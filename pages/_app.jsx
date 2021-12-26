@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "next-themes";
 
+
 function MyApp({ Component, pageProps }) {
   const { asPath } = useRouter();
   return (

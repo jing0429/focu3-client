@@ -4,8 +4,19 @@ import { Disclosure } from "@headlessui/react";
 import Router from "next/router";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import loginWithGoogle from "../FirebaseAuth";
+import LoginButton from "./LoginButton";
+
+
 const Navbar = () => {
   //theme
+  async function LoginHandler(){
+    try{
+      await loginWithGoogle();
+    }catch(err){
+      console.log(err.message);
+    }
+  }
   let {theme,setTheme}=useTheme();
   //navbar
   const navigation = [
@@ -64,10 +75,10 @@ const Navbar = () => {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 {/* brand */}
-                <h1 className=" block lg:hidden h-auto dark:text-white font-sans text-2xl transition duration-200">
+                <h1 className=" block lg:hidden h-auto dark:text-white font-sans text-2xl transition duration-100">
                   F3
                 </h1>
-                <h1 className="text-2xl hidden lg:block h-auto  dark:text-white font-sans transition duration-200">
+                <h1 className="text-2xl hidden lg:block h-auto  dark:text-white font-sans transition duration-100">
                   FOCU3
                 </h1>
               </div>
@@ -90,6 +101,7 @@ const Navbar = () => {
                     </Link>
                   ))}
                   <ThemeBotton  />
+                  <LoginButton />
                 </div>
               </div>
             </div>
