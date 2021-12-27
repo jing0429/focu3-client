@@ -8,8 +8,9 @@ export default function themeBotton() {
   }
   return (
     <div
-      className=" right-0 flex rounded-md font-medium px-3 py-1"
+      className=" right-0 flex rounded-md font-medium px-3 py-1 cursor-pointer hover:bg-emerald-700 dark:hover:bg-gray-700"
       onClick={themeToggler}
+    
     >
       {theme === "light" ? (
         <svg

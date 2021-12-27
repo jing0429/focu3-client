@@ -1,5 +1,5 @@
 import App from "next/app";
-import bootstrap from "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css"
 import "../styles/globals.css";
 import Script from "next/script";
 import Layout from "../components/Layout";

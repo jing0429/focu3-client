@@ -1,11 +1,10 @@
 import ThemeBotton from "./ThemeBotton";
 import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
-import Router from "next/router";
+
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import loginWithGoogle from "../FirebaseAuth";
-import LoginButton from "./LoginButton";
+
 
 
 const Navbar = () => {
@@ -21,16 +20,14 @@ const Navbar = () => {
   //navbar
   const navigation = [
     { name: "Home", href: "/", current: true },
-    { name: "Dashboard", href: "/dashboard", current: false },
+    { name: "Dashboard", href: "/login", current: false },
     { name: "Contact Us", href: "/Contact", current: false },
   ];
 
   const addClass = (...classes) => {
     return classes.filter(Boolean).join(" ");
   };
-  const pushURL = (href) => {
-    Router.push(href);
-  };
+
   return (
     <Disclosure
       as="nav"
@@ -101,7 +98,6 @@ const Navbar = () => {
                     </Link>
                   ))}
                   <ThemeBotton  />
-                  <LoginButton />
                 </div>
               </div>
             </div>
@@ -116,7 +112,7 @@ const Navbar = () => {
                   className={addClass(
                     item.current
                       ? "bg-emerald-600 text-zinc-900 dark:bg-gray-900 dark:text-white  "
-                      : " text-zinc-600  hover:bg-emerald-500 dark:text-gray-300 dark:hover:bg-gray-700 ",
+                      : " text-zinc-600  hover:bg-emerald-700 dark:text-gray-300 dark:hover:bg-gray-700 ",
                     "px-3 py-2 rounded-md text-sm font-medium dark:hover:text-white hover:text-black"
                   )}
                 >
