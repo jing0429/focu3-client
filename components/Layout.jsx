@@ -1,9 +1,5 @@
-import Link from "next/link";
+
 import Head from "next/head";
-
-
-import { Disclosure } from "@headlessui/react";
-import ThemeBotton from "./ThemeBotton";
 import Navbar from "./Navbar";
 export default function Layout({ children, title }) {
 
@@ -12,6 +8,7 @@ export default function Layout({ children, title }) {
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
+        <link rel="icon"  href="https://img.icons8.com/external-icongeek26-outline-gradient-icongeek26/2x/external-focus-ads-icongeek26-outline-gradient-icongeek26.png" />
         <meta name="viewport" content="initial-scale=1.0 width=device-width" />
       </Head>
       <Navbar />

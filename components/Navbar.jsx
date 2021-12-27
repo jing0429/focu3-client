@@ -1,7 +1,7 @@
 import ThemeBotton from "./ThemeBotton";
 import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
-
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 
@@ -9,25 +9,19 @@ import { useTheme } from "next-themes";
 
 const Navbar = () => {
   //theme
-  async function LoginHandler(){
-    try{
-      await loginWithGoogle();
-    }catch(err){
-      console.log(err.message);
-    }
-  }
+  let {asPath}=useRouter();
   let {theme,setTheme}=useTheme();
   //navbar
   const navigation = [
-    { name: "Home", href: "/", current: true },
-    { name: "Dashboard", href: "/login", current: false },
-    { name: "Contact Us", href: "/Contact", current: false },
+    { name: "Home", href: "/" },
+    { name: "Dashboard", href: "/login" },
+    { name: "Contact Us", href: "/Contact"},
   ];
-
+  
   const addClass = (...classes) => {
     return classes.filter(Boolean).join(" ");
   };
-
+  
   return (
     <Disclosure
       as="nav"
@@ -83,11 +77,12 @@ const Navbar = () => {
                 <div className="flex space-x-4 items-center justify-center">
                   {navigation.map((item) => (
                     <Link  href={item.href}>
+                      
                       <a
                         key={item.name}
                         
                         className={addClass(
-                          item.current
+                          asPath===item.href
                             ? "bg-emerald-600 text-zinc-900 dark:bg-gray-900 dark:text-white  "
                             : " text-zinc-600  hover:bg-emerald-500 dark:text-gray-300 dark:hover:bg-gray-700 ",
                           "px-3 py-2 rounded-md text-sm font-medium dark:hover:text-white hover:text-black font-sans no-underline"
@@ -110,7 +105,7 @@ const Navbar = () => {
                   as="a"
                   href={item.href}
                   className={addClass(
-                    item.current
+                    asPath===item.href
                       ? "bg-emerald-600 text-zinc-900 dark:bg-gray-900 dark:text-white  "
                       : " text-zinc-600  hover:bg-emerald-700 dark:text-gray-300 dark:hover:bg-gray-700 ",
                     "px-3 py-2 rounded-md text-sm font-medium dark:hover:text-white hover:text-black"

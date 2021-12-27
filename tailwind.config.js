@@ -12,6 +12,7 @@ module.exports = {
       },
     },
     fontFamily:{
+      inter:['"Inter"','sans-serif'],
       sans:['"Noto Sans TC"','sans-serif']
     },
   },

@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
           `}
       </Script>
       <ThemeProvider attribute="class">
-        <Layout title={asPath === "/" ? "Home page" : asPath} />
+        <Layout title={asPath === "/" ? "Home" : asPath.slice(1) } />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
