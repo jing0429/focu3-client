@@ -1,21 +1,28 @@
-import ThemeBotton from "./ThemeBotton";
-import { useState } from "react";
+import ThemeBtn from "./ThemeBtn";
 import { Disclosure } from "@headlessui/react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-
+import {Context} from "../context";
+import { useContext} from "react";
 
 
 const Navbar = () => {
   //theme
   let {asPath}=useRouter();
   let {theme,setTheme}=useTheme();
+  let {state:{user},dispatch}=useContext(Context);
+  let logout=()=>{
+    dispatch({
+      type:"LOGOUT"
+    })
+  }
   //navbar
+  
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Dashboard", href: "/login" },
-    { name: "Contact Us", href: "/Contact"},
+    { name: "Dashboard", href: "/dashboard" },
+    { name: user?"logout":"login", href: "/login",handler:user?logout:""},
   ];
   
   const addClass = (...classes) => {
@@ -80,7 +87,7 @@ const Navbar = () => {
                       
                       <a
                         key={item.name}
-                        
+                        onClick={item.handler}
                         className={addClass(
                           asPath===item.href
                             ? "bg-emerald-600 text-zinc-900 dark:bg-gray-900 dark:text-white  "
@@ -92,7 +99,7 @@ const Navbar = () => {
                       </a>
                     </Link>
                   ))}
-                  <ThemeBotton  />
+                  <ThemeBtn  />
                 </div>
               </div>
             </div>

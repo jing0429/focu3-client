@@ -1,14 +1,24 @@
 import App from "next/app";
-import "bootstrap-icons/font/bootstrap-icons.css"
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/globals.css";
 import Script from "next/script";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "next-themes";
-
+import { useEffect } from "react";
+import firebaseAuth from "../firebase/FirebaseAuth";
+import { UserProvider } from "../context";
 
 function MyApp({ Component, pageProps }) {
-  const { asPath } = useRouter();
+  const { asPath, push } = useRouter();
+  useEffect(() => {
+    firebaseAuth.subscribeToAuthChanges(loginHandler);
+  }, []);
+  let loginHandler = (user) => {
+    if (!user) {
+      push("/login");
+    }
+  };
   return (
     <>
       <Script
@@ -23,8 +33,10 @@ function MyApp({ Component, pageProps }) {
           `}
       </Script>
       <ThemeProvider attribute="class">
-        <Layout title={asPath === "/" ? "Home" : asPath.slice(1) } />
-        <Component {...pageProps} />
+        <UserProvider>
+          <Layout title={asPath === "/" ? "Home" : asPath.slice(1)} />
+          <Component {...pageProps} />
+        </UserProvider>
       </ThemeProvider>
     </>
   );
