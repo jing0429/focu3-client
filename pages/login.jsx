@@ -2,6 +2,7 @@ import firebaseAuth from "../firebase/FirebaseAuth";
 import { useEffect, useContext } from "react";
 import { Router, useRouter } from "next/router";
 import { Context } from "../context";
+import { toast } from "react-toastify";
 const login = () => {
   let {
     state: { user },
@@ -17,6 +18,7 @@ const login = () => {
         type: "LOGIN",
         payload: result.user.displayName,
       });
+      toast("login successfully")
       router.push("/");
     } catch (err) {
       console.log(err);
@@ -29,6 +31,7 @@ const login = () => {
         type: "LOGIN",
         payload: result.user,
       });
+      toast("login successfully")
       router.push("/");
     } catch (err) {
       console.log(err);

@@ -1,7 +1,7 @@
 import { useEffect, useReducer, createContext, useState } from "react";
 import { useRouter } from "next/router";
 import firebaseAuth from "../firebase/FirebaseAuth";
-
+import { toast } from "react-toastify";
 const Context = createContext();
 const UserProvider = ({ children }) => {
   let [user,setUser]=useState(null);
@@ -20,15 +20,22 @@ const UserProvider = ({ children }) => {
   };
   let [state, dispatch] = useReducer(userReducer, initState);
   let router = useRouter();
-  useEffect(() => {
-    dispatch({
-        type:"LOGIN",
-        payload:JSON.parse(localStorage.getItem("user"))
-    })
-  }, []);
+  let authHandler=() => {
+    let user=JSON.parse(localStorage.getItem("user"));
+    if(user){
+      dispatch({
+          type:"LOGIN",
+          payload:user
+      })
+    }else{
+      toast.warning("please login first!")
+      router.push("/login");
+    }
+  }
+  useEffect(authHandler, []);
 
   return (
-    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+    <Context.Provider value={{ state, dispatch ,authHandler}}>{children}</Context.Provider>
   );
 };
 

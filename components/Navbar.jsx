@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import {Context} from "../context";
 import { useContext} from "react";
+import { toast } from "react-toastify";
 
 
 const Navbar = () => {
@@ -13,6 +14,7 @@ const Navbar = () => {
   let {theme,setTheme}=useTheme();
   let {state:{user},dispatch}=useContext(Context);
   let logout=()=>{
+    toast("LOGOUT successfully")
     dispatch({
       type:"LOGOUT"
     })

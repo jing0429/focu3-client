@@ -1,6 +1,9 @@
 import App from "next/app";
+//css
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/globals.css";
+import "react-toastify/dist/ReactToastify.min.css";
+
 import Script from "next/script";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
@@ -22,16 +25,16 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_G_ID}`}
-      />
-      <Script strategy="lazyOnLoad">
-        {`
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_G_ID}`}
+        />
+        <Script strategy="lazyOnLoad">
+          {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', ${process.env.NEXT_PUBLIC_G_ID});
           `}
-      </Script>
+        </Script>
       <ThemeProvider attribute="class">
         <UserProvider>
           <Layout title={asPath === "/" ? "Home" : asPath.slice(1)} />
