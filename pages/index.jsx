@@ -1,6 +1,5 @@
 import {useContext,useEffect} from "react";
 import { Context } from "../context";
-
 function HomePage() {
 
   // if(process.browser){

@@ -1,6 +1,6 @@
 import firebaseAuth from "../firebase/FirebaseAuth";
-import { useEffect, useContext } from "react";
-import { Router, useRouter } from "next/router";
+import {  useContext } from "react";
+import {  useRouter } from "next/router";
 import { Context } from "../context";
 import { toast } from "react-toastify";
 const login = () => {
@@ -13,10 +13,9 @@ const login = () => {
   const loginWithGoogleHandler = async () => {
     try {
       let result = await firebaseAuth.loginWithGoogle();
-      console.log(result.user);
       dispatch({
         type: "LOGIN",
-        payload: result.user.displayName,
+        payload: result
       });
       toast("login successfully")
       router.push("/");
@@ -29,7 +28,7 @@ const login = () => {
       let result = await firebaseAuth.loginWithFacebook();
       dispatch({
         type: "LOGIN",
-        payload: result.user,
+        payload: result
       });
       toast("login successfully")
       router.push("/");
@@ -68,7 +67,7 @@ const login = () => {
           </div>
         </div>
       </div>
-      {/* <img src="https://graph.facebook.com/1969547179865069/picture?height=200&access_token=EAADwkmPsi8gBALJ99Lra7WBAN55k6OeWx1ZBFJ6aSRQKkls2jtmOZAMY8M9ScOKPTzwoZB56izOPvJlBoae0lTjoc14sC0sgs1JrdUUJx6FoGWM02rxIHwwCq5u2NxKpp6eIy64dgFjDE3z8gBDEpQCnzo4cU0stwNNGa8VmJK0XMsMFo7BGDjv6POUheqB5PnxFwDryHe88KmwT1iIbLkZA9tsGXCL6xwqZBIK9tMwZDZD" alt="" /> */}
+      
     </>
   );
 };

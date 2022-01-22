@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 const Navbar = () => {
   //theme
   let {asPath}=useRouter();
-  let {theme,setTheme}=useTheme();
+  let {theme}=useTheme();
   let {state:{user},dispatch}=useContext(Context);
   let logout=()=>{
     toast("LOGOUT successfully")
