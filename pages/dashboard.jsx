@@ -7,10 +7,10 @@ import APIservice from "../APIservice";
 const dashboard=()=>{
     let {authHandler}=useContext(Context);
     useEffect(authHandler,[]);
-    let tasks=APIservice.getTasks(1);
-    console.log(tasks);
+    //let tasks=APIservice.getTasks(1);
+    //console.log(tasks);
     return (
-        <h1>hello</h1>
+        <></>
     )
 }
 

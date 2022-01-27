@@ -1,5 +1,7 @@
 import {useContext,useEffect} from "react";
 import { Context } from "../context";
+import Memo from "../components/memo/Memo";
+import Task from "../components/task/Task";
 function HomePage() {
 
   // if(process.browser){
@@ -8,8 +10,9 @@ function HomePage() {
   let {authHandler}=useContext(Context);
   useEffect(authHandler,[]);
   return (
-    <div className=" pt-20 mx-auto lg:pt-32 max-w-5xl ">
-      
+    <div >
+      <Memo />
+      <Task />
     </div>
   );
 }

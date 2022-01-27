@@ -1,6 +1,6 @@
 import firebaseAuth from "../firebase/FirebaseAuth";
-import {  useContext } from "react";
-import {  useRouter } from "next/router";
+import { useContext } from "react";
+import { useRouter } from "next/router";
 import { Context } from "../context";
 import { toast } from "react-toastify";
 const login = () => {
@@ -9,15 +9,15 @@ const login = () => {
     dispatch,
   } = useContext(Context);
   let router = useRouter();
-  if(user)router.push("/");
+  if (user) router.push("/");
   const loginWithGoogleHandler = async () => {
     try {
       let result = await firebaseAuth.loginWithGoogle();
       dispatch({
         type: "LOGIN",
-        payload: result
+        payload: result,
       });
-      toast("login successfully")
+      toast("login successfully");
       router.push("/");
     } catch (err) {
       console.log(err);
@@ -28,9 +28,9 @@ const login = () => {
       let result = await firebaseAuth.loginWithFacebook();
       dispatch({
         type: "LOGIN",
-        payload: result
+        payload: result,
       });
-      toast("login successfully")
+      toast("login successfully");
       router.push("/");
     } catch (err) {
       console.log(err);
@@ -38,36 +38,27 @@ const login = () => {
   };
   return (
     <>
-      <div className="mt-20  h-96 flex flex-col sm:flex-row justify-center mx-2">
-        <div className=" hidden w-1/3 sm:block  pt-10 ml-10 bg-blue-400 dark:bg-purple   sm:rounded-l-md ">
-          <h1 className="font-extrabold text-gray-900 dark:text-white  text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center font-inter">
+      <div className="pt-36  h-1/2 md:h-2/3 flex  justify-center mx-2">
+        <div className=" hidden w-1/3 sm:block  pt-10 ml-10 bg-blue-400 dark:bg-gray-500  sm:rounded-l-md border-2 border-green dark:border-white">
+          {/* <h1 className="font-extrabold text-gray-900 dark:text-white  text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center font-inter">
             Productivity is not how many but how important .
-          </h1>
+          </h1> */}
+          <img src="/unlock.svg" className="mt-5" />
         </div>
-        <div className="sm:mr-10 bg-green dark:bg-blue-500 w-full sm:w-1/3  sm:rounded-r-md ">
-          <h1 className="mt-5 text-center dark:text-white text-4xl font-sans font-semibold">
+        <div className="sm:mr-10 dark:bg-cyan-600 w-full sm:w-1/3  sm:rounded-r-md border-green border-2 dark:border-white">
+          <h1 className="mt-5 text-center display-5 dark:text-white">
             Login With
           </h1>
-          <div className="flex  h-4/5 flex-col items-center justify-center">
-            <button
-              className=" text-3xl w-64 h-16 m-5 rounded-sm"
-              style={{ backgroundColor: "#4267B2" }}
-              onClick={loginWithFacebookHandler}
-            >
-              <i className=" mx-2 bi bi-facebook" />
-              Facebook
-            </button>
-            <button
-              className="bg-white dark:bg-black text-3xl w-64 h-16 m-5 rounded-sm "
-              onClick={loginWithGoogleHandler}
-            >
-              <i className="bi bi-google mx-2" />
-              Google
-            </button>
+          <div className="flex justify-evenly items-center h-1/2 flex-wrap cursor-pointer">
+            <div className="w-20 h-20 rounded-full flex justify-center items-center" onClick={loginWithFacebookHandler}>
+              <i className="bi bi-facebook text-7xl text-blue-600 dark:text-white"></i>
+            </div>
+            <div className="w-20 h-20 rounded-full flex justify-center items-center">
+              <i className="bi-google text-7xl text-red-600 dark:text-white" onClick={loginWithGoogleHandler}></i>
+            </div>
           </div>
         </div>
       </div>
-      
     </>
   );
 };

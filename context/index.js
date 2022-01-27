@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const Context = createContext();
 const UserProvider = ({ children }) => {
   let [user,setUser]=useState(null);
-  const initState = { user: user };
+  const initState = { user };
   const userReducer = (state, action) => {
     switch (action.type) {
       case "LOGIN":
