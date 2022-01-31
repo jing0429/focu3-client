@@ -5,7 +5,7 @@ import { Context } from "../../context";
 
 const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
   let borderColor = `!border-[${task.color}]`;
-  let classes = " !border-2 rounded-md  dark:bg-black " + borderColor;
+  let classes = " !border-2 rounded-md bg-white dark:bg-black " + borderColor;
   let [descExpand, setDescExpand] = useState(false);
   let [min, setMin] = useState(0);
   let {state:{user}}=useContext(Context);

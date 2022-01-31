@@ -54,6 +54,8 @@ const TaskForm = ({ tasks, setTasks }) => {
           <option value="ability">Ability</option>
           <option value="hw">Hw</option>
           <option value="learning">Learning</option>
+          <option value="learning">Planning</option>
+          <option value="learning">Note</option>
           <option value="other">Other</option>
         </select>
       </div>

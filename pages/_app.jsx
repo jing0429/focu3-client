@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider attribute="class">
         <UserProvider>
           <Layout title={asPath === "/" ? "Home" : asPath.slice(1)} />
-          <div className="h-screen bg-[#EEF6FF] dark:bg-gray-700 pt-12">
+          <div className="min-h-screen bg-[#EEF6FF] dark:bg-gray-700 pt-12">
             <Component {...pageProps} />
           </div>
         </UserProvider>
