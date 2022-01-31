@@ -20,8 +20,8 @@ export default function Layout({ children, title }) {
       <ToastContainer
         position="top-center"
         limit={1}
-        autoClose={2500}
-        theme={theme === "light" ? "light" : "dark"}
+        autoClose={2000}
+        theme={theme}
       />
       {children}
     </div>

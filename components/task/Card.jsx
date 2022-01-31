@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { Context } from "../../context";
 
 const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
-  let borderColor = `border-[${task.color}]`;
-  let classes = "card border-2 rounded-md  dark:bg-black " + borderColor;
+  let borderColor = `!border-[${task.color}]`;
+  let classes = " !border-2 rounded-md  dark:bg-black " + borderColor;
   let [descExpand, setDescExpand] = useState(false);
   let [min, setMin] = useState(0);
   let {state:{user}}=useContext(Context);
@@ -89,18 +89,18 @@ const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
           </div>
         )}
         <div className="px-1 flex flex-wrap justify-around mb-3 ">
-          <button className="btn btn-success" disabled={focus !== ""} onClick={saveTaskHandler}>
+          <button className="btn btn-success ring-1 ring-emerald-500" disabled={focus !== ""} onClick={saveTaskHandler}>
             Finish
           </button>
           {!focus ? (
             <button
-              className="btn btn-primary"
+              className="btn btn-primary ring-1 "
               onClick={() => setFocus(task.id)}
             >
               <i className="bi bi-play"></i>Focus
             </button>
           ) : (
-            <button className="btn btn-primary" onClick={() => setFocus("")}>
+            <button className="btn btn-primary ring-1" onClick={() => setFocus("")}>
               <i
                 className="bi bi-pause"
                 onClick={() => clearTimeout(timer)}
@@ -109,7 +109,7 @@ const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
             </button>
           )}
           <button
-            className="btn btn-danger"
+            className="btn btn-danger ring-1 ring-red-400"
             onClick={() => TaskFilter(task.id)}
             disabled={focus !== ""}
           >

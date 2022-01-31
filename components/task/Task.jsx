@@ -6,10 +6,9 @@ import TaskForm from "./TaskForm";
 import { toast } from "react-toastify";
 const Task = () => {
   if (process.browser) {
-    window.onbeforeunload = () => {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    };
-    
+    window.addEventListener("beforeunload", () => {
+      if(tasks!==undefined)localStorage.setItem("tasks", JSON.stringify(tasks));
+    });
   }
   let [expand, setExpand] = useState(false);
   let [tasks, setTasks] = useState([]);
@@ -20,7 +19,7 @@ const Task = () => {
   },[])
   useEffect(()=>{
     return function setUp(){
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+      localStorage.setItem("tasks",JSON.stringify(tasks));
     }
   })
   let TaskFilter = (id) => {
@@ -34,7 +33,7 @@ const Task = () => {
     );
   };
   return (
-    <div className="w-5/6 lg:w-4/5 mx-auto max-w-7xl p-3">
+    <div className="w-5/6 lg:w-3/4 mx-auto  p-3">
       <TaskBtn expand={expand} setExpand={setExpand} />
       {expand && (
         <TaskForm

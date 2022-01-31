@@ -4,7 +4,7 @@ export default function MemoBtn({ expand, setExpand }) {
   };
   return (
     <div
-      className=" absolute left-0 top-20 btn bg-blue-400 dark:bg-gray-700 btn-lg flex items-center justify-center dark:border-white"
+      className=" !absolute left-0 top-20 btn !bg-blue-400 dark:bg-gray-700 btn-lg flex items-center justify-center dark:border-white"
       onClick={expandHandler}
     >
       {!expand ? (

@@ -14,7 +14,7 @@ const Navbar = () => {
   let {theme}=useTheme();
   let {state:{user},dispatch}=useContext(Context);
   let logout=()=>{
-    toast("LOGOUT successfully")
+    toast("logout successfully")
     dispatch({
       type:"LOGOUT"
     })

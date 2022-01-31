@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import {v4 as uuidv4} from "uuid";
 import ColorBtn from "./colorBtn";
 
@@ -23,11 +23,15 @@ const TaskForm = ({ tasks, setTasks }) => {
     return newTask.name && newTask.category;
   };
   let createNewTask = (e) => {
+    e.preventDefault();
     newTask.id=uuidv4();
     setTasks([...tasks,newTask]);
+    setNewTask({ color: "#00b894", time: 0,category:"financial" })
+    formRef.current.reset();
   };
+  let formRef=useRef("");
   return (
-    <form className=" card absolute right-0 top-40  w-96 z-10 p-4 dark:border-white dark:bg-black">
+    <form className=" card !absolute right-0 top-40  w-96 z-10 p-4 dark:border-white dark:bg-black" ref={formRef}>
       <div className="mb-2">
         <input
           type="text"
@@ -50,6 +54,7 @@ const TaskForm = ({ tasks, setTasks }) => {
           <option value="ability">Ability</option>
           <option value="hw">Hw</option>
           <option value="learning">Learning</option>
+          <option value="other">Other</option>
         </select>
       </div>
 
@@ -58,43 +63,43 @@ const TaskForm = ({ tasks, setTasks }) => {
           newTask={newTask}
           colorHandler={colorHandler}
           color="#ef4444"
-          bgClass={"bg-[#ef4444]"}
-          borderClass={"border-[#ef4444] "}
+          bgClass={"!bg-[#ef4444]"}
+          borderClass={"!border-[#ef4444] "}
         />
         <ColorBtn
           newTask={newTask}
           colorHandler={colorHandler}
           color="#f87315"
-          bgClass={"bg-[#f87315]"}
-          borderClass={"border-[#f87315] "}
+          bgClass={"!bg-[#f87315]"}
+          borderClass={"!border-[#f87315] "}
         />
         <ColorBtn
           newTask={newTask}
           colorHandler={colorHandler}
           color="#eab305"
-          bgClass={"bg-[#eab305]"}
-          borderClass={"border-[#eab305] "}
+          bgClass={"!bg-[#eab305]"}
+          borderClass={"!border-[#eab305] "}
         />
         <ColorBtn
           newTask={newTask}
           colorHandler={colorHandler}
           color="#00b894"
-          bgClass={"bg-[#00b894]"}
-          borderClass={"border-[#00b894] "}
+          bgClass={"!bg-[#00b894]"}
+          borderClass={"!border-[#00b894] "}
         />
         <ColorBtn
           newTask={newTask}
           colorHandler={colorHandler}
           color="#3b81f6"
-          bgClass={"bg-[#3b81f6]"}
-          borderClass={"border-[#3b81f6] "}
+          bgClass={"!bg-[#3b81f6]"}
+          borderClass={"!border-[#3b81f6] "}
         />
         <ColorBtn
           newTask={newTask}
           colorHandler={colorHandler}
           color="#6b5ce7"
-          bgClass={"bg-[#6b5ce7]"}
-          borderClass={"border-[#6b5ce7] "}
+          bgClass={"!bg-[#6b5ce7]"}
+          borderClass={"!border-[#6b5ce7] "}
         />
       </div>
       <div className="mb-2">
@@ -118,7 +123,7 @@ const TaskForm = ({ tasks, setTasks }) => {
       <div className="mb-2">
         <button
           className="form-control bg-blue-300 dark:bg-black dark:text-white"
-          type="reset"
+          type="button"
           disabled={!check()}
           onClick={createNewTask}
         >
