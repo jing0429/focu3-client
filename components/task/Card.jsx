@@ -7,7 +7,7 @@ const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
   let borderColor = `!border-[${task.color}]`;
   let classes = " !border-2 rounded-md bg-white dark:bg-black " + borderColor;
   let [descExpand, setDescExpand] = useState(false);
-  let [min, setMin] = useState(0);
+  let [min, setMin] = useState(task.time);
   let {state:{user}}=useContext(Context);
   let timer;
   useEffect(() => {
