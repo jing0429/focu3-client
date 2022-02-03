@@ -29,6 +29,10 @@ const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
         toast.error(<div>Some error happened!<br/>Please try again later!</div>)
       }
   }
+  let pauseHandler=()=>{
+    setFocus("");
+    clearTimeout(timer);
+  }
   return (
     <div className="col ">
       <div className={classes}>
@@ -100,12 +104,11 @@ const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
               <i className="bi bi-play"></i>Focus
             </button>
           ) : (
-            <button className="btn btn-primary ring-1" onClick={() => setFocus("")}>
+            <button className="btn btn-primary ring-1" onClick={pauseHandler}>
               <i
                 className="bi bi-pause"
-                onClick={() => clearTimeout(timer)}
               ></i>
-              Palse
+              Pause
             </button>
           )}
           <button
