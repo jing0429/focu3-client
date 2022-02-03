@@ -12,7 +12,7 @@ const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
   let timer;
   useEffect(() => {
     if (focus != "")
-      setTimeout(() => {
+      timer=setTimeout(() => {
         setMin(min + 1);
         TimeUpdater(task.id,min+1)
       }, 60000);
