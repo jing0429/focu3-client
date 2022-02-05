@@ -1,38 +1,46 @@
-import { useState, useEffect,useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import APIservice from "../../APIservice";
 import { toast } from "react-toastify";
 import { Context } from "../../context";
 
-const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
+const Card = ({ task, TaskFilter, setFocus, focus, TimeUpdater }) => {
   let borderColor = `!border-[${task.color}]`;
   let classes = " !border-2 rounded-md bg-white dark:bg-black " + borderColor;
   let [descExpand, setDescExpand] = useState(false);
   let [min, setMin] = useState(task.time);
-  let {state:{user}}=useContext(Context);
+  let {
+    state: { user },
+  } = useContext(Context);
   let timer;
   useEffect(() => {
     if (focus != "")
-      timer=setTimeout(() => {
+      timer = setTimeout(() => {
         setMin(min + 1);
-        TimeUpdater(task.id,min+1)
+        TimeUpdater(task.id, min + 1);
       }, 60000);
   });
   let expandToggler = () => {
     setDescExpand(!descExpand);
   };
-  let saveTaskHandler=async()=>{
-      try{
-        let res=await APIservice.saveTask(user,task);
-        TaskFilter(task.id);
-        toast.success("Save successfully!")
-      }catch(err){
-        toast.error(<div>Some error happened!<br/>Please try again later!</div>)
-      }
-  }
-  let pauseHandler=()=>{
+  let saveTaskHandler = async () => {
+    try {
+      let res = await APIservice.saveTask(user, task);
+      TaskFilter(task.id);
+      toast.success("Save successfully!");
+    } catch (err) {
+      toast.error(
+        <div>
+          Some error happened!
+          <br />
+          Please try again later!
+        </div>
+      );
+    }
+  };
+  let pauseHandler = () => {
     setFocus("");
     clearTimeout(timer);
-  }
+  };
   return (
     <div className="col ">
       <div className={classes}>
@@ -71,7 +79,7 @@ const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
                   <textarea
                     className="form-control resize-none border-none focus:outline-none mb-2 bg-white "
                     readOnly
-                    defaultValue={task.desc}
+                    value={task.desc}
                     rows={4}
                   />
                 </div>
@@ -93,7 +101,11 @@ const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
           </div>
         )}
         <div className="px-1 flex flex-wrap justify-around mb-3 ">
-          <button className="btn btn-success ring-1 ring-emerald-500" disabled={focus !== ""} onClick={saveTaskHandler}>
+          <button
+            className="btn btn-success ring-1 ring-emerald-500"
+            disabled={focus !== ""}
+            onClick={saveTaskHandler}
+          >
             Finish
           </button>
           {!focus ? (
@@ -105,9 +117,7 @@ const Card = ({ task, TaskFilter, setFocus, focus,TimeUpdater }) => {
             </button>
           ) : (
             <button className="btn btn-primary ring-1" onClick={pauseHandler}>
-              <i
-                className="bi bi-pause"
-              ></i>
+              <i className="bi bi-pause"></i>
               Pause
             </button>
           )}
