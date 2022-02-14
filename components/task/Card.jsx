@@ -7,7 +7,6 @@ const Card = ({ task, TaskFilter, setFocus, focus, TimeUpdater }) => {
   let borderColor = `!border-[${task.color}]`;
   let classes = " !border-2 rounded-md bg-white dark:bg-black " + borderColor;
   let [descExpand, setDescExpand] = useState(false);
-  let [min, setMin] = useState(task.time);
   let {
     state: { user },
   } = useContext(Context);
@@ -15,8 +14,7 @@ const Card = ({ task, TaskFilter, setFocus, focus, TimeUpdater }) => {
   useEffect(() => {
     if (focus != "")
       timer = setTimeout(() => {
-        setMin(min + 1);
-        TimeUpdater(task.id, min + 1);
+        TimeUpdater(task.id, task.time + 1);
       }, 60000);
   });
   let expandToggler = () => {
@@ -91,7 +89,7 @@ const Card = ({ task, TaskFilter, setFocus, focus, TimeUpdater }) => {
           <div
             className={`alert ${borderColor}  dark:bg-black dark:text-white mx-3 text-center`}
           >
-            focus {min} min
+            focus {task.time} min
           </div>
         ) : (
           <div
